@@ -10,6 +10,7 @@ class DBOperation
 		$this->con= $db->connect();
 	}
 
+// For Category
 
 	public function addcategory($parent, $cat)
 	{
@@ -30,6 +31,8 @@ class DBOperation
 
 	}
 
+// For Brand
+
 	public function addbrand($brand_name)
 	{
 		$pre_stmt=$this->con->prepare("INSERT INTO `brands`( `brand_name`, `status`) VALUES (?,?) ");
@@ -41,6 +44,29 @@ class DBOperation
 		if ($result)
 	    {
 			return "BRAND_ADDED"; 
+		}
+		else
+		{
+			return 0;
+		}
+
+	}
+
+// For Product
+
+	public function addproduct($cid, $bid, $p_name, $p_price,$p_stock,$date)
+	{
+		$pre_stmt=$this->con->prepare("INSERT INTO `products`( `cid`, `bid`, `product_name`, `product_price`, `product_stock`, `added_date`, `p_status`) VALUES (?,?,?,?,?,?,?)");
+
+		$status=1;
+		$pre_stmt->bind_param("iisdisi",$cid, $bid, $p_name, $p_price,$p_stock,$date,$status);
+
+		$result= $pre_stmt->execute() or die($this->con->error );
+
+		
+		if ($result)
+	    {
+			return "NEW_PRODUCT_ADDED"; 
 		}
 		else
 		{

@@ -6,6 +6,7 @@
 include_once("../database/constants.php");
 include_once("user.php");
 include_once("DBOperation.php");
+include_once("manage.php");
 
 // For Registation processing
 
@@ -62,6 +63,7 @@ if (isset($_POST["getBrand"]) )
 
 
 
+
 //ADD Category
 
 if(isset($_POST["category_name"]) AND isset($_POST["Parent_cat"]))
@@ -79,6 +81,60 @@ if(isset($_POST["brand_name"]))
 	$result=$obj->addbrand( $_POST["Parent_cat"] );
 	echo $result;
 	exit();
+}
+
+
+//ADD Product
+
+if(isset($_POST["added_date"]) AND isset($_POST["product_name"]) )
+{
+	$obj=new DBOperation();
+	$result=$obj->addproduct( $_POST["select_cat"],    $_POST["select_brand"] ,
+							  $_POST["product_name"],  $_POST["product_price"],
+							  $_POST["product_qty"],   $_POST["added_date"] );
+
+	echo $result;
+	exit();
+}
+
+
+//Manage Category 
+if (isset($_POST["manageCategory"])) {
+	$m= new Manage();
+	$result= $m-> manageRecordwithpagination("categories",1);
+	$rows=$result["rows"];
+	$pagination=$result["pagination"];
+	if(count($rows)>0)
+	{
+		$n=0;
+		foreach ($rows as $row) 
+		{
+			?>
+
+			  <tr>
+		        <td> <?php echo ++$n; ?> </td>
+		        <td> <?php echo $row["category"]; ?> </td>
+		        <td> <?php echo $row["parent"]; ?> </td>
+
+
+		        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+		        <td>
+		        	<a href="#" class="btn btn-danger btn-sm">Delete</a>
+		        	<a href="#" class="btn btn-info btn-sm">Edit</a>
+		        </td>
+		      </tr>
+
+			<?php
+			
+		}
+
+		?> 
+			<tr> <td colspan="5"> <?php echo $pagination; ?>  </td></tr> 
+
+	    <?php
+		
+		exit();
+	}
 }
 
 ?>

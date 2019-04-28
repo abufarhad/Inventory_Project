@@ -8,7 +8,8 @@ class Database
 	{
 		include_once("constants.php");
 		$this->con =new Mysqli(HOST,USER,PASS,DB);
-		if ($this->con) {
+		if ($this->con) 
+		{
 			 //echo "-----------------OK Connection Done !! ---------------------";
 			return $this->con;
 			
