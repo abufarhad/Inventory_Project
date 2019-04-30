@@ -38,7 +38,7 @@ if (!isset($_SESSION["userid"]))
 
 	<!-- Js link -->
 
-	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/manage.js"></script>
 	
 </head>
 

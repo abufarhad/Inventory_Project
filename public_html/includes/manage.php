@@ -49,7 +49,7 @@ function pagination($con, $table, $pno, $n)
 
 	//echo "Total Pages ".$last."</br>";
 
-	$pagination="";
+	$pagination="<ul class='pagination'>";
 
 	if ($last !=1)
 	{
@@ -57,22 +57,22 @@ function pagination($con, $table, $pno, $n)
 	    {
 			$previous="";
 			$previous=$pageno-1;
-			$pagination .= "<a href='".$previous."' style='color : #333;' >Previous </a> ";
+			$pagination .= "<li class='page-item'><a class='page-link' pn='".$previous."' href='#' style='color : #333;' >Previous </a></li> ";
 		}
 
 		for ($i=$pageno-5 ; $i < $pageno ; $i++) 
 		{ 
 			if($i >0)
 			{
-			$pagination .= "<a href =' ".$i."'> ".$i." </a>";
+			$pagination .= "<li class='page-item'><a class='page-link' pn=' ".$i."' href ='#' > ".$i." </a></li> ";
 			}
 		}
 
-		$pagination .= "<a href='".$pageno."' style='color : #333;' >$pageno </a> ";
+		$pagination .= "<li class='page-item'><a class='page-link' pn='".$pageno."' href='#' style='color : #333;' >$pageno </a> </li> ";
 
 		for ($i=$pageno+1; $i <=$last ; $i++) 
 		{ 
-			$pagination .= "<a href =' ".$i."'> ".$i." </a>";
+			$pagination .= "<li class='page-item'><a class='page-link' pn=' ".$i."' href ='#'> ".$i." </a></li> ";
 			if ($i > $pageno+4)
 		    {
 				break;
@@ -82,7 +82,7 @@ function pagination($con, $table, $pno, $n)
 		if ($last>$pageno)
 	    {
 	    	$next=$pageno+1;
-	    	$pagination .= "<a href=' ".$next."' style='color : #333;' >Next </a> ";
+	    	$pagination .= "<li class='page-item'><a class='page-link' pn=' ".$next."' href='#' style='color : #333;' >Next </a> </li> </ul>";
 	    }
 
 	}
