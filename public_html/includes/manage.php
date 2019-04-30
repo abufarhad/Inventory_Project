@@ -35,7 +35,7 @@ class Manage
 
 
 // Pagination 
-function pagination($con, $table, $pno, $n)
+private function pagination($con, $table, $pno, $n)
 {
 	//$totalRecords=100000;
 

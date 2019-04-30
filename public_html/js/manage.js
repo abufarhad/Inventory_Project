@@ -12,7 +12,7 @@ $(document).ready(function()
    $.ajax({
  			url		:DOMAIN+"/includes/process.php",
  			method	:"POST",
- 			data	: {manageCategory:1,pageno:pn},
+ 			data	: {manageCategory:1, pageno:pn},
  			success :function(data)
  			{ 
  				
@@ -26,7 +26,8 @@ $(document).ready(function()
  $("body").delegate(".page-link ", "click", function(){
 
  	var pn=$(this).attr("pn");
- 	alert(pn);
+ 	//alert(pn);
+ 	manageCategory(pn);
  } )
 
 })

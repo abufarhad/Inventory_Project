@@ -101,12 +101,12 @@ if(isset($_POST["added_date"]) AND isset($_POST["product_name"]) )
 //Manage Category 
 if (isset($_POST["manageCategory"])) {
 	$m= new Manage();
-	$result= $m-> manageRecordwithpagination("categories",1);
+	$result= $m-> manageRecordwithpagination("categories", $_POST["pageno"]);
 	$rows=$result["rows"];
 	$pagination=$result["pagination"];
 	if(count($rows)>0)
 	{
-		$n=0;
+		$n = (($_POST["pageno"] - 1) * 5)+1;
 		foreach ($rows as $row) 
 		{
 			?>
