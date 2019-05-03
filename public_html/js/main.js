@@ -295,6 +295,7 @@ function fetch_brand()
  				else
  				{
  					alert(data);
+
  				}
  				
  			}

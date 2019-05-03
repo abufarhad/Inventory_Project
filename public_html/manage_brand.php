@@ -55,13 +55,12 @@ if (!isset($_SESSION["userid"]))
 		    <thead>
 		      <tr>
 		        <th>#</th>
-		        <th>Category</th>
-		        <th>Parent</th>
+		        <th>Brand</th>
 		        <th>Status</th>
 		        <th>Action</th>
 		      </tr>
 		    </thead>
-		    <tbody id="get_category">
+		    <tbody id="get_brand">
 		    	
 	<!-- 	    <tr>
 		        <td>1</td>
@@ -79,7 +78,7 @@ if (!isset($_SESSION["userid"]))
 	</div>
 
 <?php  
-	include_once("./templates/update_category.php");
+	include_once("./templates/update_brand.php");
 ?>
 
 </body>

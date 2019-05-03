@@ -74,14 +74,17 @@ if(isset($_POST["category_name"]) AND isset($_POST["Parent_cat"]))
 	exit();
 }
 
+
 //ADD Brand
 if(isset($_POST["brand_name"]))
 {
 	$obj=new DBOperation();
-	$result=$obj->addbrand( $_POST["Parent_cat"] );
+	$result=$obj->addbrand( $_POST["brand_name"] );
 	echo $result;
 	exit();
 }
+
+
 
 
 //ADD Product
@@ -100,32 +103,103 @@ if(isset($_POST["added_date"]) AND isset($_POST["product_name"]) )
 
 //Manage Category 
 if (isset($_POST["manageCategory"])) {
-	$m= new Manage();
-	$result= $m-> manageRecordwithpagination("categories", $_POST["pageno"]);
-	$rows=$result["rows"];
-	$pagination=$result["pagination"];
-	if(count($rows)>0)
-	{
+	$m = new Manage();
+	$result = $m->manageRecordWithPagination("categories",$_POST["pageno"]);
+	$rows = $result["rows"];
+	$pagination = $result["pagination"];
+	if (count($rows) > 0) {
 		$n = (($_POST["pageno"] - 1) * 5)+1;
-		foreach ($rows as $row) 
-		{
+		foreach ($rows as $row) {
 			?>
 
 			  <tr>
-		        <td> <?php echo ++$n; ?> </td>
-		        <td> <?php echo $row["category"]; ?> </td>
-		        <td> <?php echo $row["parent"]; ?> </td>
+			        <td><?php echo $n; ?></td>
+			        <td><?php echo $row["category"]; ?></td>
+			        <td><?php echo $row["parent"]; ?></td>
+			       
 
 
-		        <td><a href="#" class="btn btn-success btn-sm">Active</a></td>
+		        <td><a href="#"  class="btn btn-success btn-sm">Active</a></td>
 		        <td>
-		        	<a href="#" class="btn btn-danger btn-sm">Delete</a>
-		        	<a href="#" class="btn btn-info btn-sm">Edit</a>
+		        	<a href="#" did="<?php echo $row['cid']; ?> " class="btn btn-danger btn-sm del_cat">Delete</a>
+		        	<a href="#" eid="<?php echo $row['cid']; ?> "  class="btn btn-info btn-sm edit_cat" data-toggle="modal" data-target="#category" >Edit</a>
 		        </td>
 		      </tr>
 
 			<?php
-			
+			$n++;
+		}
+
+		?> 
+			<tr> <td colspan="5"> <?php echo $pagination; ?>  </td></tr> 
+
+	    <?php
+		
+		exit();
+	}
+} //This culprit tensed me almost 15-16 hour 
+
+//	Delete Category
+	if (isset($_POST["deleteCategory"])) 
+	{
+		$m=new Manage();
+		$result=$m->deleteRecord("categories","cid", $_POST["id"]);
+		echo $result;
+
+		# code...
+	}
+
+//Update Category
+	if (isset($_POST["updateCategory"]))
+    {
+    	$m=new Manage();
+		$result=$m->getSingleRecord("categories","cid", $_POST["id"]);
+		echo json_encode($result); //converting result , its an array. Reqired in js 
+		exit();
+
+		# code...
+	}
+
+//Update Record Afetr Getting Data
+	if (isset($_POST["update_category"])) 
+	{
+		$m=new Manage();
+		$id=$_POST["cid"];
+		$name=$_POST["update_category"];
+		$parent=$_POST["parent_cat"];
+		$result= $m->update_record("categories", ["cid"=>$id], ["parent_cat"=>$parent , "category_name"=>$name ,"status"=>1]);
+		echo $result;
+
+		# code...
+	}
+
+//----------------Brand--------------
+
+	//Manage Brand 
+if (isset($_POST["manageBrand"])) {
+	$m = new Manage();
+	$result = $m->manageRecordWithPagination("brands",$_POST["pageno"]);
+	$rows = $result["rows"];
+	$pagination = $result["pagination"];
+	if (count($rows) > 0) {
+		$n = (($_POST["pageno"] - 1) * 5)+1;
+		foreach ($rows as $row) {
+			?>
+
+			  <tr>
+			        <td><?php echo $n; ?></td>
+			        <td><?php echo $row["brand_name"]; ?></td>
+			    
+			       
+		        <td><a href="#"  class="btn btn-success btn-sm">Active</a></td>
+		        <td>
+		        	<a href="#" did="<?php echo $row['bid']; ?> " class="btn btn-danger btn-sm del_brand">Delete</a>
+		        	<a href="#" eid="<?php echo $row['bid']; ?> "  class="btn btn-info btn-sm edit_brand" data-toggle="modal" data-target="#from_brand" >Edit</a>
+		        </td>
+		      </tr>
+
+			<?php
+			$n++;
 		}
 
 		?> 
@@ -136,5 +210,40 @@ if (isset($_POST["manageCategory"])) {
 		exit();
 	}
 }
+
+//	Delete Brand
+	if (isset($_POST["deleteBrand"])) 
+	{
+		$m=new Manage();
+		$result=$m->deleteRecord("brands","bid", $_POST["id"]);
+		echo $result;
+
+		# code...
+	}
+
+
+//Update Brand
+	if (isset($_POST["updateBrand"]))
+    {
+    	$m=new Manage();
+		$result=$m->getSingleRecord("brands","bid", $_POST["id"]);
+		echo json_encode($result); //converting result , its an array. Reqired in js 
+		exit();
+
+		# code...
+	}
+
+//Update Record Afetr Getting Data
+	if (isset($_POST["update_brand"])) 
+	{
+		$m=new Manage();
+		$id=$_POST["bid"];
+		$name=$_POST["update_brand"];
+		$result= $m->update_record("brands", ["bid"=>$id], [ "brand_name"=>$name ,"status"=>1]);
+		echo $result;
+
+		# code...
+	}
+
 
 ?>
