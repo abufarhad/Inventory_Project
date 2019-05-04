@@ -19,6 +19,12 @@ class Manage
 		$sql="SELECT p.cid, p.category_name as category, c.category_name as parent, p.status FROM categories p LEFT JOIN categories c ON p.parent_cat=c.cid ".$a["limit"];
 		
 		}
+		else if ($table=="products") 
+		{
+			$sql=" SELECT p.pid, p.product_name ,c.category_name, b.brand_name, p.product_price, p.product_stock, p.added_date, p.p_status FROM products p, categories c, brands b WHERE p.bid=b.bid AND p.cid=c.cid ".$a["limit"];
+			# code...
+		}
+
 		else
 		{
 			$sql="SELECT * FROM ".$table." ".$a["limit"];
