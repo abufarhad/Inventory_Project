@@ -337,4 +337,53 @@ if (isset($_POST["manageProduct"])) {
 	}
 
 
+	// --------------------Order Processing ----------------------
+
+	if (isset($_POST["getNewOrderItem"]))
+    {
+    	$obj= new DBOperation();
+    	$rows=$obj->getALLRecord("products");
+
+    	?> 
+    	
+    	<tr> 
+			<td><b id="number">1 </b></td>
+		    <td>
+		        <select name="pid[]" class="form-control form-control-sm pid" required>
+		            <option value="">Choose Product</option>
+		            <?php 
+		            	foreach ($rows as $row) {
+		            		?><option value="<?php echo $row['pid']; ?>"><?php echo $row['product_name']; ?></option><?php
+		            	}
+		            ?>
+		        </select>
+		    </td>
+
+			<td><input name="Tqty[]" readonly type="text" class="form-control form-control-sm Tqty"> </td>
+
+			<td><input name="qty[]" type="text" class="form-control form-control-sm qty" required> </td>
+
+			<td><input name="Price[]" type="text" class="form-control form-control-sm price" readonly> </td>
+
+			<td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name" readonly> </td>
+
+			<td> BDT. <span class="amt">0</span> </td>
+
+   		</tr>
+
+    	<?php 
+    	exit();
+    }
+
+
+    // Get price and quantity of one item
+    if (isset($_POST["getPriceAndQty"] )) 
+    {
+    	$m= new manage();
+    	$result = $m->getSingleRecord("Products", "pid", $_POST["id"]);
+    	echo json_encode($result);
+    	exit();
+    }
+
+
 ?>

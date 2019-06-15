@@ -83,7 +83,7 @@ if (!isset($_SESSION["userid"]))
 			      <div class="card-body">
 			        <h5 class="card-title">New Orders</h5>
 			        <p class="card-text">Here you can make invoices and create new order</p>
-			        <a href="#" class="btn btn-primary">New Orders</a>
+			        <a href="new_order.php" class="btn btn-primary">New Orders</a>
 			      </div>
 			    </div>
 
