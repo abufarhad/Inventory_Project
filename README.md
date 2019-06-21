@@ -1,4 +1,6 @@
-# It is a Project for online Shoping, kinda Inventory Project
+# It is a Project for Management System of a ShoppingMall, kinda Inventory Project
 
-This Website helps for shoping easily                                                          
---------------- features -----------
+This Website helps for shopping easily                                                          
+--------------- features -------------
+            
+                -Working-
