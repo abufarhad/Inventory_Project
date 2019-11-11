@@ -1,6 +1,6 @@
-# It is a Project for Management System of a Shoppingmall, kinda Inventory Project
+# It is an Inventory Management system Project 
 
-This Website helps for Management of Shopping easily                                                          
+This Website for Management of Shoping purpose                                                    
 --------------- features -------------
             
-                -Working-
+      -Under Working Procedure -
