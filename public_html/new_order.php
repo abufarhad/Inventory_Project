@@ -82,7 +82,7 @@ if (!isset($_SESSION["userid"]))
 
 			   	<div class="card">
 			   		<div class="card-body">
-			   			<h3>Make a Order List</h3>
+			   			<h3>Order List</h3>
 
 			   			<br>
 			   			<!-- Table start -->
@@ -156,7 +156,7 @@ if (!isset($_SESSION["userid"]))
 			   	<div class="form-group row">
 			   	  <label for="Discount" class="col-sm-3 col-form-label " align="right">Discount</label>
 			    	<div class="col-sm-6">
-			   		<input type="text" name="Discount" class="form-control form-control-sm" id="Discount" required>
+			   		<input type="text" name="Discount" class="form-control form-control-sm" id="discount" required>
 			   	    </div>	
 			   	</div>
 

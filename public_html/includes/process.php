@@ -347,7 +347,7 @@ if (isset($_POST["manageProduct"])) {
     	?> 
     	
     	<tr> 
-			<td><b id="number">1 </b></td>
+			<td><b class="number">1 </b></td>
 		    <td>
 		        <select name="pid[]" class="form-control form-control-sm pid" required>
 		            <option value="">Choose Product</option>
@@ -365,7 +365,7 @@ if (isset($_POST["manageProduct"])) {
 
 			<td><input name="Price[]" type="text" class="form-control form-control-sm price" readonly> </td>
 
-			<td><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name" readonly> </td>
+			<span><input name="pro_name[]" type="hidden" class="form-control form-control-sm pro_name" readonly> </span>
 
 			<td> BDT. <span class="amt">0</span> </td>
 
